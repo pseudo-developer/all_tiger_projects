@@ -1,0 +1,352 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblWeatherForecastSimple",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "SFCID",
+                    "data_type": "long",
+                    "nullable": true
+                },
+                {
+                    "column_name": "WeatherHdrID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Date",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsDst",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Tz",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "High",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Low",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Conditions",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Icon",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Qpf_Day",
+                    "data_type": "double",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Qpf_Night",
+                    "data_type": "double",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Snow_Day",
+                    "data_type": "double",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Snow_Night",
+                    "data_type": "double",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MaxWind",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MaxWindDir",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MaxWindDegrees",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AveWind",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AveWindDir",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AveWindDegrees",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AveHumidity",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MaxHumidity",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Minhumidity",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "SFCID"
+                ],
+                "watermark_column": "DateAdded",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblWeatherForecastSimple_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "SFCID",
+                    "source_column_name": "SFCID",
+                    "type": "long",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "WeatherHdrID",
+                    "source_column_name": "WeatherHdrID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Date",
+                    "source_column_name": "Date",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsDst",
+                    "source_column_name": "IsDst",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Tz",
+                    "source_column_name": "Tz",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "High",
+                    "source_column_name": "High",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Low",
+                    "source_column_name": "Low",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Conditions",
+                    "source_column_name": "Conditions",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Icon",
+                    "source_column_name": "Icon",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Qpf_Day",
+                    "source_column_name": "Qpf_Day",
+                    "type": "double",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Qpf_Night",
+                    "source_column_name": "Qpf_Night",
+                    "type": "double",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Snow_Day",
+                    "source_column_name": "Snow_Day",
+                    "type": "double",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Snow_Night",
+                    "source_column_name": "Snow_Night",
+                    "type": "double",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MaxWind",
+                    "source_column_name": "MaxWind",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MaxWindDir",
+                    "source_column_name": "MaxWindDir",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MaxWindDegrees",
+                    "source_column_name": "MaxWindDegrees",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AveWind",
+                    "source_column_name": "AveWind",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AveWindDir",
+                    "source_column_name": "AveWindDir",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AveWindDegrees",
+                    "source_column_name": "AveWindDegrees",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AveHumidity",
+                    "source_column_name": "AveHumidity",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MaxHumidity",
+                    "source_column_name": "MaxHumidity",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Minhumidity",
+                    "source_column_name": "Minhumidity",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblWeatherForecastSimple",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblWeatherForecastSimple",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblWeatherForecastSimple",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblWeatherForecastSimple"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,254 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblMobileEventEmployeeRecap",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "DemoId",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "EmployeeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Time_Start",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Time_Lunch_Out",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Time_Lunch_In",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Time_Out",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ChangeLog",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ApprovalState",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LastApprovalBy",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Nd_Time",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Nd_Notes",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsBreaker",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsSalesLead",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Member_Samples",
+                    "data_type": "int",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "DemoId",
+                    "EmployeeID"
+                ],
+                "watermark_column": "Time_Start",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblMobileEventEmployeeRecap_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "DemoId",
+                    "source_column_name": "DemoId",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "EmployeeID",
+                    "source_column_name": "EmployeeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Time_Start",
+                    "source_column_name": "Time_Start",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Time_Lunch_Out",
+                    "source_column_name": "Time_Lunch_Out",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Time_Lunch_In",
+                    "source_column_name": "Time_Lunch_In",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Time_Out",
+                    "source_column_name": "Time_Out",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ChangeLog",
+                    "source_column_name": "ChangeLog",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ApprovalState",
+                    "source_column_name": "ApprovalState",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LastApprovalBy",
+                    "source_column_name": "LastApprovalBy",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Nd_Time",
+                    "source_column_name": "Nd_Time",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Nd_Notes",
+                    "source_column_name": "Nd_Notes",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsBreaker",
+                    "source_column_name": "IsBreaker",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsSalesLead",
+                    "source_column_name": "IsSalesLead",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Member_Samples",
+                    "source_column_name": "Member_Samples",
+                    "type": "int",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblMobileEventEmployeeRecap",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblMobileEventEmployeeRecap",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblMobileEventEmployeeRecap",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblMobileEventEmployeeRecap"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

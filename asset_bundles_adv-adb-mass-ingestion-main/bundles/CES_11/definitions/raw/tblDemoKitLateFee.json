@@ -1,0 +1,132 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblDemoKitLateFee",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "dk_id",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "dk_fee",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "dk_desc",
+                    "data_type": "string",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "dk_id"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblDemoKitLateFee_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "dk_id",
+                    "source_column_name": "dk_id",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "dk_fee",
+                    "source_column_name": "dk_fee",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "dk_desc",
+                    "source_column_name": "dk_desc",
+                    "type": "string",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblDemoKitLateFee",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblDemoKitLateFee",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblDemoKitLateFee",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblDemoKitLateFee"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,649 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblItems_Phrase_Other",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "ItemsID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "VendorID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ItemDeliveryID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SubstitutionWithAnotherItem",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SubstituteItemID1",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DepartmentID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SubstituteItemID2",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ItemNumber",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Description",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ElectricityRequired",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoSamplesPerSellUnit",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ServingOrPortionSize",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CustomerGL",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MarketingItem",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "InHouseItem",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SupplyCharge",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UnitPrice",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Active",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdatedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdatedDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoPreparationInstructions",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SellingPoints",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Recipes",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoRateType",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ServiceTypeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MinHours",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MaxHours",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "FlatLaborRate",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "HourlyLaborRate",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsFullLaborRate",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UPC",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "EnhancementItems",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsAllerganRequired",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Allergans",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SafetyStatement",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsDummyItem",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DefaultRecipeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsWPItem",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "HasWpItemBeenApproved",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "YieldPerHour",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsPeanutAllergenSignRequired",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SellUnit",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CookingMethodID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PurchaseLimit",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsNewProductToWF",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductDeliveryMethodID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsVendorPartnerPreference",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductDescription",
+                    "data_type": "string",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "ItemsID"
+                ],
+                "watermark_column": "UpdatedDate",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblItems_Phrase_Other_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "ItemsID",
+                    "source_column_name": "ItemsID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "VendorID",
+                    "source_column_name": "VendorID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ItemDeliveryID",
+                    "source_column_name": "ItemDeliveryID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SubstitutionWithAnotherItem",
+                    "source_column_name": "SubstitutionWithAnotherItem",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SubstituteItemID1",
+                    "source_column_name": "SubstituteItemID1",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DepartmentID",
+                    "source_column_name": "DepartmentID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SubstituteItemID2",
+                    "source_column_name": "SubstituteItemID2",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ItemNumber",
+                    "source_column_name": "ItemNumber",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Description",
+                    "source_column_name": "Description",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ElectricityRequired",
+                    "source_column_name": "ElectricityRequired",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoSamplesPerSellUnit",
+                    "source_column_name": "DemoSamplesPerSellUnit",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ServingOrPortionSize",
+                    "source_column_name": "ServingOrPortionSize",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CustomerGL",
+                    "source_column_name": "CustomerGL",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MarketingItem",
+                    "source_column_name": "MarketingItem",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "InHouseItem",
+                    "source_column_name": "InHouseItem",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SupplyCharge",
+                    "source_column_name": "SupplyCharge",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UnitPrice",
+                    "source_column_name": "UnitPrice",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Active",
+                    "source_column_name": "Active",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedBy",
+                    "source_column_name": "AddedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdatedBy",
+                    "source_column_name": "UpdatedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdatedDate",
+                    "source_column_name": "UpdatedDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoPreparationInstructions",
+                    "source_column_name": "DemoPreparationInstructions",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SellingPoints",
+                    "source_column_name": "SellingPoints",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Recipes",
+                    "source_column_name": "Recipes",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoRateType",
+                    "source_column_name": "DemoRateType",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ServiceTypeID",
+                    "source_column_name": "ServiceTypeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MinHours",
+                    "source_column_name": "MinHours",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MaxHours",
+                    "source_column_name": "MaxHours",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "FlatLaborRate",
+                    "source_column_name": "FlatLaborRate",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "HourlyLaborRate",
+                    "source_column_name": "HourlyLaborRate",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsFullLaborRate",
+                    "source_column_name": "IsFullLaborRate",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UPC",
+                    "source_column_name": "UPC",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "EnhancementItems",
+                    "source_column_name": "EnhancementItems",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsAllerganRequired",
+                    "source_column_name": "IsAllerganRequired",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Allergans",
+                    "source_column_name": "Allergans",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SafetyStatement",
+                    "source_column_name": "SafetyStatement",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsDummyItem",
+                    "source_column_name": "IsDummyItem",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DefaultRecipeID",
+                    "source_column_name": "DefaultRecipeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsWPItem",
+                    "source_column_name": "IsWPItem",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "HasWpItemBeenApproved",
+                    "source_column_name": "HasWpItemBeenApproved",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "YieldPerHour",
+                    "source_column_name": "YieldPerHour",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsPeanutAllergenSignRequired",
+                    "source_column_name": "IsPeanutAllergenSignRequired",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SellUnit",
+                    "source_column_name": "SellUnit",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CookingMethodID",
+                    "source_column_name": "CookingMethodID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PurchaseLimit",
+                    "source_column_name": "PurchaseLimit",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsNewProductToWF",
+                    "source_column_name": "IsNewProductToWF",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductDeliveryMethodID",
+                    "source_column_name": "ProductDeliveryMethodID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsVendorPartnerPreference",
+                    "source_column_name": "IsVendorPartnerPreference",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductDescription",
+                    "source_column_name": "ProductDescription",
+                    "type": "string",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblItems_Phrase_Other",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblItems_Phrase_Other",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblItems_Phrase_Other",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblItems_Phrase_Other"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+resources:
+  pipelines:
+    boost_retail_dlt_pipeline:
+      name: Boost Retail - Bronze Public
+      configuration:
+        configuration_path: ${var.bronze_configuration_path}
+        utils_path: ${var.pacman_location}
+        env: ${var.env}
+      libraries:
+        - notebook:
+            path: ${var.pacman_location}/src/bronze/bronze_dlt
+      schema: public_bronze
+      development: false
+      photon: true
+      channel: PREVIEW
+      catalog: ${var.catalog_name}
+      serverless: false
+      permissions:
+        - level: CAN_MANAGE
+          group_name: ${var.dev_group}

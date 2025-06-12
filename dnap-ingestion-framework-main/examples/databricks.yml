@@ -1,0 +1,63 @@
+bundle:
+  name: dnap_aiautostaffing_bundle
+
+workspace:
+  root_path: /Workspace/Users/tyler.bishop@advantagesolutions.net/.bundle/${bundle.name}
+
+include:
+  - pipelines/*.yml # not sure if this format works or if each one needs to be specified
+
+run_as:
+  user_name: tyler.bishop@advantagesolutions.net
+
+permissions:
+  - level: CAN_VIEW
+    group_name: ${var.users_group}
+
+variables:
+  cluster_id:
+    description: Cluster ID for Medium Shared Compute
+    lookup:
+      cluster: Medium Shared Compute Cluster
+  catalog_name:
+    description: Catalog name
+    default: example_catalog
+  target_schema:
+    description: Databricks Schema to write DLTs
+    default: example_schema
+  users_group:
+    description: Environment specific name for the users group to add Can View permissions on the workflow
+    default: az-adv-dnap-eus2-adb-01-i1-dev-users
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-4661267993302765.5.azuredatabricks.net
+    resources:
+      pipelines:
+        example_pipeline:
+          development: true
+          serverless: false
+          clusters:
+            - label: default
+              node_type_id: Standard_E4d_v4
+              autoscale:
+                min_workers: 1
+                max_workers: 5
+                mode: ENHANCED
+  qa:
+    mode: development
+    workspace:
+      host: https://adb-7069523072644634.14.azuredatabricks.net
+    variables:
+      catalog_name: dnap_hr_ai_staffing_qa
+      users_group: az-adv-dnap-eus2-adb-01-i1-qa-users
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-7622183527867515.15.azuredatabricks.net
+    variables:
+      catalog_name: dnap_hr_ai_staffing_prod
+      users_group: az-adv-dnap-eus2-adb-01-i1-prod-users

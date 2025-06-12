@@ -1,0 +1,297 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblProducts",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "ProductKey",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SourceKey",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductReference",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductCode",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductCodeNumeric",
+                    "data_type": "long",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductUPC",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductUPCNumeric",
+                    "data_type": "long",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CasePack",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SizeDesc",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CategoryCode",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CategoryName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MinSalesDate",
+                    "data_type": "date",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MaxSalesDate",
+                    "data_type": "date",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsActive",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsDeleted",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "InsertAuditKey",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdateAuditKey",
+                    "data_type": "int",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "ProductKey"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblProducts_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "ProductKey",
+                    "source_column_name": "ProductKey",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SourceKey",
+                    "source_column_name": "SourceKey",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductReference",
+                    "source_column_name": "ProductReference",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductCode",
+                    "source_column_name": "ProductCode",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductCodeNumeric",
+                    "source_column_name": "ProductCodeNumeric",
+                    "type": "long",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductUPC",
+                    "source_column_name": "ProductUPC",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductUPCNumeric",
+                    "source_column_name": "ProductUPCNumeric",
+                    "type": "long",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductName",
+                    "source_column_name": "ProductName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CasePack",
+                    "source_column_name": "CasePack",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SizeDesc",
+                    "source_column_name": "SizeDesc",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CategoryCode",
+                    "source_column_name": "CategoryCode",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CategoryName",
+                    "source_column_name": "CategoryName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MinSalesDate",
+                    "source_column_name": "MinSalesDate",
+                    "type": "date",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MaxSalesDate",
+                    "source_column_name": "MaxSalesDate",
+                    "type": "date",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsActive",
+                    "source_column_name": "IsActive",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsDeleted",
+                    "source_column_name": "IsDeleted",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "InsertAuditKey",
+                    "source_column_name": "InsertAuditKey",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdateAuditKey",
+                    "source_column_name": "UpdateAuditKey",
+                    "type": "int",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblProducts",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblProducts",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblProducts",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblProducts"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

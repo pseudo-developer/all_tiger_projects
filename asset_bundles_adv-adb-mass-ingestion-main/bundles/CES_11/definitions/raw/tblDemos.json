@@ -1,0 +1,517 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblDemos",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "DemoID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PrevDemoID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LocationsID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "StatusCodeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CancelCodeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoType",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoCount",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdatedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdatedDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ScheduledHours",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ScheduledHoursID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SalesAdvisorCount",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ReplyDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsEdit",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "GroupID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IVRSurvey",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Coupons",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LobbyEvents",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "OffsiteLocation",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoWithoutKit",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "OffsiteLocationName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "TwoforOneWarehouse",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "NearestStoreID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsRescheduled",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsNonEvent",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ApprovedByBuyer",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "OriginalDemoDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MobileStatus",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoSourceID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ExcludeBaseCommutaionCharge",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Time",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "TimeSlot",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Cancellation_Notes",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsScheduledMailSent",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsInteractiveDisplayDemo",
+                    "data_type": "bool",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "DemoID"
+                ],
+                "watermark_column": "UpdatedDate",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblDemos_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "DemoID",
+                    "source_column_name": "DemoID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PrevDemoID",
+                    "source_column_name": "PrevDemoID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LocationsID",
+                    "source_column_name": "LocationsID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoDate",
+                    "source_column_name": "DemoDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "StatusCodeID",
+                    "source_column_name": "StatusCodeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CancelCodeID",
+                    "source_column_name": "CancelCodeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoType",
+                    "source_column_name": "DemoType",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoCount",
+                    "source_column_name": "DemoCount",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedBy",
+                    "source_column_name": "AddedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdatedBy",
+                    "source_column_name": "UpdatedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdatedDate",
+                    "source_column_name": "UpdatedDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ScheduledHours",
+                    "source_column_name": "ScheduledHours",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ScheduledHoursID",
+                    "source_column_name": "ScheduledHoursID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SalesAdvisorCount",
+                    "source_column_name": "SalesAdvisorCount",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ReplyDate",
+                    "source_column_name": "ReplyDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsEdit",
+                    "source_column_name": "IsEdit",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "GroupID",
+                    "source_column_name": "GroupID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IVRSurvey",
+                    "source_column_name": "IVRSurvey",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Coupons",
+                    "source_column_name": "Coupons",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LobbyEvents",
+                    "source_column_name": "LobbyEvents",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "OffsiteLocation",
+                    "source_column_name": "OffsiteLocation",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoWithoutKit",
+                    "source_column_name": "DemoWithoutKit",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "OffsiteLocationName",
+                    "source_column_name": "OffsiteLocationName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "TwoforOneWarehouse",
+                    "source_column_name": "TwoforOneWarehouse",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "NearestStoreID",
+                    "source_column_name": "NearestStoreID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsRescheduled",
+                    "source_column_name": "IsRescheduled",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsNonEvent",
+                    "source_column_name": "IsNonEvent",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ApprovedByBuyer",
+                    "source_column_name": "ApprovedByBuyer",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "OriginalDemoDate",
+                    "source_column_name": "OriginalDemoDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MobileStatus",
+                    "source_column_name": "MobileStatus",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoSourceID",
+                    "source_column_name": "DemoSourceID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ExcludeBaseCommutaionCharge",
+                    "source_column_name": "ExcludeBaseCommutaionCharge",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Time",
+                    "source_column_name": "Time",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "TimeSlot",
+                    "source_column_name": "TimeSlot",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Cancellation_Notes",
+                    "source_column_name": "Cancellation_Notes",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsScheduledMailSent",
+                    "source_column_name": "IsScheduledMailSent",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsInteractiveDisplayDemo",
+                    "source_column_name": "IsInteractiveDisplayDemo",
+                    "type": "bool",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblDemos",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblDemos",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblDemos",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblDemos"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,253 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "DataModificationLog",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "DataModificationLogID",
+                    "data_type": "long",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ModifiedTableName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PKColumn1",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PKColumn1Value",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PKColumn2",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PKColumn2Value",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PKColumn3",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PKColumn3Value",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ColumnName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "OldValue",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "NewValue",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Reason",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "DataModificationLogID"
+                ],
+                "watermark_column": "DateAdded",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "DataModificationLog_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "DataModificationLogID",
+                    "source_column_name": "DataModificationLogID",
+                    "type": "long",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ModifiedTableName",
+                    "source_column_name": "ModifiedTableName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PKColumn1",
+                    "source_column_name": "PKColumn1",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PKColumn1Value",
+                    "source_column_name": "PKColumn1Value",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PKColumn2",
+                    "source_column_name": "PKColumn2",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PKColumn2Value",
+                    "source_column_name": "PKColumn2Value",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PKColumn3",
+                    "source_column_name": "PKColumn3",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PKColumn3Value",
+                    "source_column_name": "PKColumn3Value",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ColumnName",
+                    "source_column_name": "ColumnName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "OldValue",
+                    "source_column_name": "OldValue",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "NewValue",
+                    "source_column_name": "NewValue",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Reason",
+                    "source_column_name": "Reason",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedBy",
+                    "source_column_name": "AddedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.DataModificationLog",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.DataModificationLog",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.DataModificationLog",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.DataModificationLog"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

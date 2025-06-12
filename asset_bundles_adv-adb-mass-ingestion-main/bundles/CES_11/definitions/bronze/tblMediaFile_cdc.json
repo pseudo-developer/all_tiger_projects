@@ -1,0 +1,246 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblMediaFile_cdc",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "MediaFileID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ItemID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "FileNumber",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Status",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "FileContents",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "FileName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "FileSize",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "OriginalFileName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_hash_key",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_hash_key_non_pk",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_operation",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_batch_id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_load_timestamp",
+                    "data_type": "timestamp",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "pac_hash_key"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [
+                    "pac_load_timestamp"
+                ],
+                "except_column_list": [
+                    "pac_operation"
+                ]
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_bronze",
+                    "table_name": "tblMediaFile",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "MediaFileID",
+                    "source_column_name": "MediaFileID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ItemID",
+                    "source_column_name": "ItemID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "FileNumber",
+                    "source_column_name": "FileNumber",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Status",
+                    "source_column_name": "Status",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "FileContents",
+                    "source_column_name": "FileContents",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "FileName",
+                    "source_column_name": "FileName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "FileSize",
+                    "source_column_name": "FileSize",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "OriginalFileName",
+                    "source_column_name": "OriginalFileName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_hash_key",
+                    "source_column_name": "pac_hash_key",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_hash_key_non_pk",
+                    "source_column_name": "pac_hash_key_non_pk",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_operation",
+                    "source_column_name": "pac_operation",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_batch_id",
+                    "source_column_name": "pac_batch_id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_load_timestamp",
+                    "source_column_name": "pac_load_timestamp",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblMediaFile_cdc",
+                        "qa": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblMediaFile_cdc",
+                        "stg": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblMediaFile_cdc",
+                        "prod": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblMediaFile_cdc"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "SCD_2"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

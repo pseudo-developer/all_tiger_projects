@@ -1,0 +1,220 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblProductLinks",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "ProductLinkID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ItemsID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductReference",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductLinkType",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsExcluded",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdatedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdatedDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "VendorID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "GroupID",
+                    "data_type": "int",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "ProductLinkID"
+                ],
+                "watermark_column": "DateAdded",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblProductLinks_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "ProductLinkID",
+                    "source_column_name": "ProductLinkID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ItemsID",
+                    "source_column_name": "ItemsID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductReference",
+                    "source_column_name": "ProductReference",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductLinkType",
+                    "source_column_name": "ProductLinkType",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsExcluded",
+                    "source_column_name": "IsExcluded",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedBy",
+                    "source_column_name": "AddedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdatedBy",
+                    "source_column_name": "UpdatedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdatedDate",
+                    "source_column_name": "UpdatedDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "VendorID",
+                    "source_column_name": "VendorID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "GroupID",
+                    "source_column_name": "GroupID",
+                    "type": "int",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblProductLinks",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblProductLinks",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblProductLinks",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblProductLinks"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

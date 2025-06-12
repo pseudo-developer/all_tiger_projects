@@ -1,0 +1,119 @@
+bundle:
+  name: CES11_bundle
+
+workspace:
+  root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}
+include:
+  - pipelines/*.yml
+  - schemas/*.yml
+  - workflows/*.yml
+
+permissions:
+  - level: CAN_VIEW
+    group_name: ${var.users_group}
+  - level: CAN_MANAGE
+    service_principal_name: ${workspace.current_user.userName}
+    group_name: ${var.dev_group}
+
+variables:
+  users_group:
+    description: Environment specific name for the users group to add Can View permissions on the workflow
+    default: az-adv-dnap-eus2-adb-01-i1-dev-users
+  dev_group:
+    description: Environment specific name for the dev group to add Can Manage permissions on the workflow
+    default: az-adv-dnap-eus2-adb-01-i1-dev-developer
+  pacman_location:
+    description: Location path to the P.A.C.M.A.N framework
+    default: /Workspace/Repos/main-repos/dnap-ingestion-framework
+  utils_location:
+    description: Path to P.A.C.M.A.N framework utils/. Overridable if needed, otherwise assumes pacman_location
+    default: ${var.pacman_location}/utils/
+  configuration_base_path:
+    description: Base path for configuration files
+    default: ${workspace.root_path}/files/definitions
+  raw_configuration_path:
+    description: Path to raw configuration path. Overridable if needed, otherwise assumes base path/raw
+    default: ${var.configuration_base_path}/raw
+  bronze_configuration_path:
+    description: Path to bronze configuration files. Overridable if needed, otherwise assumes base path/bronze
+    default: ${var.configuration_base_path}/bronze
+  cluster_id:
+    description: Cluster ID for Medium Shared Compute
+    lookup:
+      cluster: Medium Shared Compute Cluster
+  env:
+    description: 'Environment literal like dev, qa, stage, prod'
+    default: dev
+  catalog_env:
+    description: 'Environment literal like dev, qa, stg, prod'
+    default: dev  
+  catalog_name:
+    description: Test catalog to use
+    default: ces_agency_demodb_ems_dev
+  team_tag:
+    description: Advantage team name Tag
+    default: dnap
+  app_tag:
+    description: Application name Tag
+    default: mass_ingestion
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-4661267993302765.5.azuredatabricks.net
+    variables:
+      env: dev
+      catalog_name: ces_agency_demodb_ems_dev
+      users_group: az-adv-dnap-eus2-adb-01-i1-dev-users
+      dev_group: az-adv-dnap-eus2-adb-01-i1-dev-developer
+    resources:
+      pipelines: 
+        ces11_dlt_pipeline:
+          serverless: true
+          development: true
+
+  stage:
+    mode: production
+    workspace:
+      host: https://adb-8306180947252240.0.azuredatabricks.net
+    variables:
+      env: stg
+      catalog_env: stg
+      catalog_name: ces_agency_demodb_ems_stg
+      users_group: az-adv-dnap-eus2-adb-01-i1-stage-users
+      dev_group: az-adv-dnap-eus2-adb-01-i1-stage-developer
+    resources:
+      pipelines: 
+        ces11_dlt_pipeline:
+          clusters:
+            - label: default
+              node_type_id: Standard_E16ds_v4
+              driver_node_type_id: Standard_E32ds_v4
+              autoscale:
+                min_workers: 1
+                max_workers: 8
+                mode: ENHANCED
+          
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-7622183527867515.15.azuredatabricks.net
+    variables:
+      catalog_name: ces_agency_demodb_ems_prod
+      users_group: az-adv-dnap-eus2-adb-01-i1-prod-users
+      dev_group: az-adv-dnap-eus2-adb-01-i1-prod-developer
+      env: prod
+      catalog_env: prod
+    resources:
+      pipelines:
+        ces11_dlt_pipeline:
+          clusters:
+            - label: default
+              node_type_id: Standard_E16ds_v4
+              driver_node_type_id: Standard_E32ds_v4
+              autoscale:
+                min_workers: 1
+                max_workers: 8
+                mode: ENHANCED

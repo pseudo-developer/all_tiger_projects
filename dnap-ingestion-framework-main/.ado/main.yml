@@ -1,0 +1,84 @@
+trigger:
+  tags:
+    include:
+      - v*.*.*
+
+pr: none
+
+stages:
+#DEV
+- stage: DEV
+  displayName: 'Deploy to DEV'
+  variables:
+    - group: ADV-ADB-PACFLOW-DEPLOY-DEV
+  jobs:
+    - deployment: Deploy_DEV
+      displayName: 'Deploy Databricks Assets to DEV'
+      environment: ADV-ADB-DEV
+      pool: ADV-TF-DEV-EASTUS2-Data and Analytics Portfolio
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: /.ado/deploy-template.yml
+              parameters:
+                env: dev
+#QA
+- stage: QA
+  displayName: 'Deploy to QA'
+  dependsOn: DEV
+  condition: succeeded()
+  variables:
+    - group: ADV-ADB-PACFLOW-DEPLOY-QA
+  jobs:
+    - deployment: Deploy_QA
+      displayName: 'Deploy Databricks Assets to QA'
+      environment: ADV-ADB-QA
+      pool: ADV-TF-QA-EASTUS2-Data and Analytics Portfolio
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: /.ado/deploy-template.yml
+              parameters:
+                env: qa
+
+#STAGE
+- stage: STAGE
+  displayName: 'Deploy to STAGE'
+  dependsOn: QA
+  condition: succeeded()
+  variables:
+    - group: ADV-ADB-PACFLOW-DEPLOY-STAGE
+  jobs:
+    - deployment: Deploy_STAGE
+      displayName: 'Deploy Databricks Assets to STAGE'
+      environment: ADV-ADB-STAGE
+      pool: ADV-TF-STAGE-EASTUS2-Data and Analytics Portfolio
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: /.ado/deploy-template.yml
+              parameters:
+                env: stage
+
+#PROD
+- stage: PRODUCTION
+  displayName: 'Deploy to PROD'
+  dependsOn: STAGE
+  condition: succeeded()
+  variables:
+    - group: ADV-ADB-PACFLOW-DEPLOY-PROD
+  jobs:
+    - deployment: Deploy_PROD
+      displayName: 'Deploy Databricks Assets to STAGE'
+      environment: ADV-ADB-PROD
+      pool: ADV-TF-PROD-EASTUS2-Data and Analytics Portfolio
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: /.ado/deploy-template.yml
+              parameters:
+                env: prod

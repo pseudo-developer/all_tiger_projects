@@ -1,0 +1,15 @@
+resources:
+  pipelines:
+    example_pipeline:
+      name: DNAP - Example Pipeline
+      libraries:
+        - notebook:
+            path: ${workspace.root_path}/files/src/raw-to-bronze-ingestion
+        - notebook:
+            path: ${workspace.root_path}/files/silver-table-definitions/example-silver
+      target: ${var.target_schema}
+      development: false
+      photon: true
+      channel: PREVIEW
+      catalog: ${var.catalog_name}
+      serverless: false

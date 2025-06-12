@@ -1,0 +1,176 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblEmployeeType",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "TypeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Type",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Active",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "RoleType",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Abbreviation",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsCampaignRole",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Role",
+                    "data_type": "short",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "TypeID"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblEmployeeType_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "TypeID",
+                    "source_column_name": "TypeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Type",
+                    "source_column_name": "Type",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Active",
+                    "source_column_name": "Active",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "RoleType",
+                    "source_column_name": "RoleType",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Abbreviation",
+                    "source_column_name": "Abbreviation",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsCampaignRole",
+                    "source_column_name": "IsCampaignRole",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Role",
+                    "source_column_name": "Role",
+                    "type": "short",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblEmployeeType",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblEmployeeType",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblEmployeeType",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblEmployeeType"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

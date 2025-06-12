@@ -1,0 +1,10 @@
+resources:
+  schemas:
+    test-schema:
+      name: test-schema
+      catalog_name: ${var.catalog_name}
+      comment: This schema was created by the ingestion framework test Databricks Asset Bundle (DAB)
+    ingestion_framework_test:
+      name: ingestion_framework_test
+      catalog_name: dnap_dev
+      comment: This schema was created by the ingestion framework test Databricks Asset Bundle (DAB)

@@ -1,0 +1,177 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblMobileRecapItemExpenses",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "ItemID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Units",
+                    "data_type": "double",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Cost",
+                    "data_type": "double",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Tax",
+                    "data_type": "double",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DNR",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Tax2",
+                    "data_type": "double",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "ItemID",
+                    "DemoID"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblMobileRecapItemExpenses_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "ItemID",
+                    "source_column_name": "ItemID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoID",
+                    "source_column_name": "DemoID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Units",
+                    "source_column_name": "Units",
+                    "type": "double",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Cost",
+                    "source_column_name": "Cost",
+                    "type": "double",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Tax",
+                    "source_column_name": "Tax",
+                    "type": "double",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DNR",
+                    "source_column_name": "DNR",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Tax2",
+                    "source_column_name": "Tax2",
+                    "type": "double",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblMobileRecapItemExpenses",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblMobileRecapItemExpenses",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblMobileRecapItemExpenses",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblMobileRecapItemExpenses"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "configs": [
+        {
+            "query": {
+                "displayName": "LastInstepFileModificationTime",
+                "description": "Query to detect if we have not processed a file for instep yet today.",
+                "sql": "\n    SELECT\n        MAX(SourceMetadata.file_modification_time) AS `Last File Received At`\n        , CASE \n            WHEN TIMESTAMPDIFF(HOUR, MAX(SourceMetadata.file_modification_time), CURRENT_TIMESTAMP) >= 1\n                THEN CONCAT(TIMESTAMPDIFF(HOUR, MAX(SourceMetadata.file_modification_time), CURRENT_TIMESTAMP), ' hours ago')\n            ELSE\n                CONCAT(TIMESTAMPDIFF(MINUTE, MAX(SourceMetadata.file_modification_time), CURRENT_TIMESTAMP), ' minutes ago')\n        END AS `Time Ago`\n        , SUM(\n            CASE \n            WHEN DATE(SourceMetadata.file_modification_time) = DATE(from_utc_timestamp(CURRENT_TIMESTAMP, 'America/Chicago'))\n            THEN 1 \n            ELSE 0 \n        END) AS `Rows Processed Today`\n    FROM bronze_retailtainment_instep.event;\n"
+            },
+            "alert": {
+                "displayName": "Missing Instep File Alert",
+                "columnName": "Rows Processed Today",
+                "operator": "EQUAL",
+                "operandValue": 0
+            },
+            "notification": {
+                "cronExpression": "0 8 13 * * ?",
+                "timezoneId": "America/Chicago",
+                "teamsConfigs": {
+                    "workflowUrl": "https://prod-27.westus.logic.azure.com:443/workflows/9ecec4fb35ab4f5999137e3bdc5ba39a/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=II5Z0_5JnC4Nyba3qux0x4Z3TdC3H1xT25ViLu5YkG4",
+                    "title": "Instep File Is Missing",
+                    "body": "No file has been ingested for Instep today. The missing daily file will cause reporting to be out of date or incomplete.",
+                    "showAlertResult": true
+                },
+                "emailConfigs": {
+                    "notificationDestinations": ["Instep Missing File Alerts"],
+                    "subject": "Alert \"{{ALERT_NAME}}\" changed status to {{ALERT_STATUS}}",
+                    "body": "{{QUERY_RESULT_TABLE}}"
+                }
+            }
+        }
+    ]
+}

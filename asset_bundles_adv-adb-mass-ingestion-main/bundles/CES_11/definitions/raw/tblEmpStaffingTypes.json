@@ -1,0 +1,165 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblEmpStaffingTypes",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "EmpStaffingTypeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "EmpStaffingType",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsActive",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PhraseID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Abbrevation",
+                    "data_type": "string",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "EmpStaffingTypeID"
+                ],
+                "watermark_column": "DateAdded",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblEmpStaffingTypes_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "EmpStaffingTypeID",
+                    "source_column_name": "EmpStaffingTypeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "EmpStaffingType",
+                    "source_column_name": "EmpStaffingType",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsActive",
+                    "source_column_name": "IsActive",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PhraseID",
+                    "source_column_name": "PhraseID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Abbrevation",
+                    "source_column_name": "Abbrevation",
+                    "type": "string",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblEmpStaffingTypes",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblEmpStaffingTypes",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblEmpStaffingTypes",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblEmpStaffingTypes"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

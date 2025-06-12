@@ -1,0 +1,81 @@
+
+steps:
+- checkout: self
+  persistCredentials: true
+  fetchDepth: 0
+  clean: true
+  displayName: "Checkout repository"
+
+- task: Bash@3
+  displayName: "Extract Path and Version from Tag"
+  inputs:
+    targetType: 'inline'
+    script: |
+      TAG=$(Build.SourceBranchName)
+      if [[ "$TAG" =~ v([0-9]+\.[0-9]+\.[0-9]+)-(.*) ]]; then
+        VERSION=${BASH_REMATCH[1]}
+        ASSET_PATH=${BASH_REMATCH[2]}
+        echo "##vso[task.setvariable variable=VERSION]$VERSION"
+        echo "##vso[task.setvariable variable=ASSET_PATH]$ASSET_PATH"
+        echo "Version: $VERSION"
+        echo "Asset Path: $ASSET_PATH"
+      else
+        echo "Error: Invalid tag format."
+        exit 1
+      fi
+
+- script: env | sort
+  displayName: 'Environment / Context'
+
+- task: UsePythonVersion@0
+  displayName: 'Use Python $(pythonVersion)'
+  inputs:
+    versionSpec: '$(pythonVersion)'
+
+- task: ShellScript@2
+  inputs:
+    scriptPath: $(System.DefaultWorkingDirectory)/.ado/install-deps.bash
+  displayName: 'Install additional dependencies'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: adv-devops-sp-adv-dnap-eus2-adb-01-i1-${{ parameters.env }}
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      echo "Getting access token..."
+      DATABRICKS_TOKEN=$(az account get-access-token --resource 2ff814a6-3304-4ab8-85cb-cd0e6f879c1d --query "accessToken" -o tsv)
+      echo "##vso[task.setvariable variable=DATABRICKS_TOKEN]$DATABRICKS_TOKEN"
+  displayName: 'Fetch Databricks Token'
+
+- script: |
+    echo "Checking Databricks CLI installation..."
+    if command -v databricks &> /dev/null; then
+      echo "Databricks CLI is already installed. Removing existing version..."
+      sudo rm -f /usr/local/bin/databricks
+    fi
+    echo "Installing Databricks CLI..."
+    curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sudo sh
+    echo "Databricks CLI version: $(databricks --version)"
+  displayName: 'Install Databricks CLI'
+
+- script: |
+    echo "Configuring Databricks CLI..."
+    export DATABRICKS_CONFIG_FILE="$(System.DefaultWorkingDirectory)/.databrickscfg"
+    echo -e "[DEFAULT]\nhost=$(DATABRICKS_HOST)\ntoken=$(DATABRICKS_TOKEN)" > $DATABRICKS_CONFIG_FILE
+  displayName: 'Configure Databricks CLI'
+  env:
+    DATABRICKS_HOST: $(DATABRICKS_HOST)
+    DATABRICKS_TOKEN: $(DATABRICKS_TOKEN)
+
+- script: |
+    echo "Validating DAB of $(ASSET_PATH) for $(env) environment..."
+    databricks bundle validate -t $(env)  
+  displayName: 'Validate DAB'
+  workingDirectory: $(System.DefaultWorkingDirectory)/bundles/$(ASSET_PATH)
+
+- script: |
+    echo "Deploying DAB of $(ASSET_PATH) to $(env) environment..."
+    databricks bundle deploy -t $(env) --auto-approve
+  displayName: 'Deploy DAB'
+  workingDirectory: $(System.DefaultWorkingDirectory)/bundles/$(ASSET_PATH)

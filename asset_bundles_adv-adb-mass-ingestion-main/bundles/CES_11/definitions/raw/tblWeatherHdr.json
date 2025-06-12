@@ -1,0 +1,198 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblWeatherHdr",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "WeatherHdrID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LocationsID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Date",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Conditions",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "TempHigh",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "TempLow",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ForecastJson",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SelectedForecastOffset",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "WeatherHdrID"
+                ],
+                "watermark_column": "DateAdded",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblWeatherHdr_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "WeatherHdrID",
+                    "source_column_name": "WeatherHdrID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LocationsID",
+                    "source_column_name": "LocationsID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Date",
+                    "source_column_name": "Date",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Conditions",
+                    "source_column_name": "Conditions",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "TempHigh",
+                    "source_column_name": "TempHigh",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "TempLow",
+                    "source_column_name": "TempLow",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ForecastJson",
+                    "source_column_name": "ForecastJson",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SelectedForecastOffset",
+                    "source_column_name": "SelectedForecastOffset",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblWeatherHdr",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblWeatherHdr",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblWeatherHdr",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblWeatherHdr"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

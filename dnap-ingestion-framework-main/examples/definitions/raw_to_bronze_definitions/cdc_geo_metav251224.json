@@ -1,0 +1,192 @@
+{
+  "source_to_target_definition": {
+    "source_entity": {
+      "data_store": {
+        "type": "catalog",
+        "properties": {
+          "catalog_name": "dnap_cpg_sales_nghq_dev",
+          "schema_name": "raw_circana_test",
+          "table_name": "cdc_geo_metav251224",
+          "file_location": null,
+          "spark_options": {}
+        }
+      },
+      "schema": [
+        {
+          "column_name": "GEOGRAPHY_KEY",
+          "data_type": "int",
+          "nullable": true
+        },
+        {
+          "column_name": "GEOGRAPHY_DESCRIPTION",
+          "data_type": "string",
+          "nullable": true
+        },
+        {
+          "column_name": "OUTLET_NAME",
+          "data_type": "string",
+          "nullable": true
+        },
+        {
+          "column_name": "PROJECTED_GEOGRAPHY_TYPE_NAME",
+          "data_type": "string",
+          "nullable": true
+        },
+        {
+          "column_name": "LastModifiedDate",
+          "data_type": "timestamp",
+          "nullable": true
+        },
+        {
+          "column_name": "TestSchemaEvo",
+          "data_type": "string",
+          "nullable": true
+        },
+        {
+          "column_name": "pac_hash_key",
+          "data_type": "string",
+          "nullable": true
+        },
+        {
+          "column_name": "pac_hash_key_non_pk",
+          "data_type": "string",
+          "nullable": true
+        },
+        {
+          "column_name": "pac_batch_id",
+          "data_type": "string",
+          "nullable": true
+        },
+        {
+          "column_name": "pac_load_timestamp",
+          "data_type": "timestamp",
+          "nullable": true
+        }
+      ],
+      "property": {
+        "primary_keys": ["pac_hash_key"],
+        "watermark_column": null,
+        "initial_watermark_value": null,
+        "seq_col": ["pac_load_timestamp"],
+        "except_column_list": []
+      }
+    },
+    "target_definition": {
+      "data_store": {
+        "type": "catalog",
+        "properties": {
+          "catalog_name": "dnap_cpg_sales_nghq_dev",
+          "schema_name": "bronze_circana_test_v2",
+          "table_name": "bronze_geo_metav251224",
+          "trigger_type": null,
+          "trigger_interval": null,
+          "spark_options": {}
+        }
+      },
+      "schema_transform_map": [
+        {
+          "column_name": "GEOGRAPHY_KEY",
+          "source_column_name": "GEOGRAPHY_KEY",
+          "type": "int",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "GEOGRAPHY_DESCRIPTION",
+          "source_column_name": "GEOGRAPHY_DESCRIPTION",
+          "type": "string",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "OUTLET_NAME",
+          "source_column_name": "OUTLET_NAME",
+          "type": "string",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "PROJECTED_GEOGRAPHY_TYPE_NAME",
+          "source_column_name": "PROJECTED_GEOGRAPHY_TYPE_NAME",
+          "type": "string",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "LastModifiedDate",
+          "source_column_name": "LastModifiedDate",
+          "type": "timestamp",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "TestSchemaEvo",
+          "source_column_name": "TestSchemaEvo",
+          "type": "string",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "pac_hash_key",
+          "source_column_name": "pac_hash_key",
+          "type": "string",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "pac_hash_key_non_pk",
+          "source_column_name": "pac_hash_key_non_pk",
+          "type": "string",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "pac_batch_id",
+          "source_column_name": "pac_batch_id",
+          "type": "string",
+          "derived_expression": ""
+        },
+        {
+          "column_name": "pac_load_timestamp",
+          "source_column_name": "pac_load_timestamp",
+          "type": "timestamp",
+          "derived_expression": ""
+        }
+      ],
+      "property": {
+        "primary_keys": ["GEOGRAPHY_KEY"],
+        "seq_col": [],
+        "partition_col": ["pac_load_timestamp"]
+      }
+    },
+    "table_transform": {
+      "dedup": {
+        "enabled": true,
+        "properties": {
+          "keys_override": [
+            ""
+          ]
+        }
+      },
+      "cdc": {
+        "enabled": true,
+        "properties": {
+          "table_name_for_comparison": "dnap_cpg_sales_nghq_dev.raw_circana_test.bronze_cdc_geo_metav251224"
+        }
+      },
+      "load_strategy": {
+        "mode": "SCD_2"
+      }
+    },
+    "rules": {
+      "bronze": {
+        "Error": {
+          "literal": {
+            "rule": ""
+          },
+          "derived": {
+            "rule": ""
+          }
+        },
+        "Warn": {
+          "literal": {
+            "rule": ""
+          },
+          "derived": null
+        }
+      }
+    }
+  }
+}

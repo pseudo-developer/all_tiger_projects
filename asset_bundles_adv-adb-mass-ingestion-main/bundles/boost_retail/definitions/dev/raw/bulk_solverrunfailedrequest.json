@@ -1,0 +1,121 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "foreign_panama_boost_retaildb_qa",
+                    "schema_name": "public",
+                    "table_name": "bulk_solverrunfailedrequest"
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "problem_body",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "response_body",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "created_date",
+                    "data_type": "timestamp",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "id"
+                ],
+                "watermark_column": "created_date",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "boost_retaildb_dev",
+                    "schema_name": "public_raw",
+                    "table_name": "bulk_solverrunfailedrequest_cdc"
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "id",
+                    "source_column_name": "id",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "problem_body",
+                    "source_column_name": "problem_body",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "response_body",
+                    "source_column_name": "response_body",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "created_date",
+                    "source_column_name": "created_date",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": "boost_retaildb_dev.public_bronze.bulk_solverrunfailedrequest"
+                }
+            },
+            "load_strategy": {
+                "mode": "cdc append",
+                "stage_enabled": true
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,226 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "boost_retaildb_prod",
+                    "schema_name": "public_raw",
+                    "table_name": "availability_unavailabletime_cdc"
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "start_datetime",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "end_datetime",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "description",
+                    "data_type": "varchar(100)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "is_deleted",
+                    "data_type": "boolean",
+                    "nullable": true
+                },
+                {
+                    "column_name": "created_datetime",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "user_id",
+                    "data_type": "bigint",
+                    "nullable": true
+                },
+                {
+                    "column_name": "external_id",
+                    "data_type": "varchar(256)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "latest_import_id",
+                    "data_type": "bigint",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_hash_key",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_hash_key_non_pk",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_operation",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_load_timestamp",
+                    "data_type": "timestamp",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "pac_hash_key"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [
+                    "pac_load_timestamp"
+                ],
+                "except_column_list": [
+                    "pac_operation"
+                ]
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "boost_retaildb_prod",
+                    "schema_name": "public_bronze",
+                    "table_name": "availability_unavailabletime"
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "id",
+                    "source_column_name": "id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "start_datetime",
+                    "source_column_name": "start_datetime",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "end_datetime",
+                    "source_column_name": "end_datetime",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "description",
+                    "source_column_name": "description",
+                    "type": "varchar(100)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "is_deleted",
+                    "source_column_name": "is_deleted",
+                    "type": "boolean",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "created_datetime",
+                    "source_column_name": "created_datetime",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "user_id",
+                    "source_column_name": "user_id",
+                    "type": "bigint",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "external_id",
+                    "source_column_name": "external_id",
+                    "type": "varchar(256)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "latest_import_id",
+                    "source_column_name": "latest_import_id",
+                    "type": "bigint",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_hash_key",
+                    "source_column_name": "pac_hash_key",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_hash_key_non_pk",
+                    "source_column_name": "pac_hash_key_non_pk",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_operation",
+                    "source_column_name": "pac_operation",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_load_timestamp",
+                    "source_column_name": "pac_load_timestamp",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": [
+                        ""
+                    ]
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": "boost_retaildb_prod.public_raw.bronze_availability_unavailabletime_cdc"
+                }
+            },
+            "load_strategy": {
+                "mode": "SCD_2"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

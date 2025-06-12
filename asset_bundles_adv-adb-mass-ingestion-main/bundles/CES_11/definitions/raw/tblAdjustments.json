@@ -1,0 +1,275 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblAdjustments",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "AdjustmentID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "VendorID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AdjustmentDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AdjustmentAmount",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AdjustmentNumber",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Applied",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Comment",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CheckNumber",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PaidDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "TransactionTypeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PeriodEndingDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsDeleted",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "OriginalPrePaymentDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DisplayPP",
+                    "data_type": "bool",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "AdjustmentID"
+                ],
+                "watermark_column": "DateAdded",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblAdjustments_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "AdjustmentID",
+                    "source_column_name": "AdjustmentID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "VendorID",
+                    "source_column_name": "VendorID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AdjustmentDate",
+                    "source_column_name": "AdjustmentDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AdjustmentAmount",
+                    "source_column_name": "AdjustmentAmount",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AdjustmentNumber",
+                    "source_column_name": "AdjustmentNumber",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Applied",
+                    "source_column_name": "Applied",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Comment",
+                    "source_column_name": "Comment",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedBy",
+                    "source_column_name": "AddedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CheckNumber",
+                    "source_column_name": "CheckNumber",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PaidDate",
+                    "source_column_name": "PaidDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "TransactionTypeID",
+                    "source_column_name": "TransactionTypeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PeriodEndingDate",
+                    "source_column_name": "PeriodEndingDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsDeleted",
+                    "source_column_name": "IsDeleted",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "OriginalPrePaymentDate",
+                    "source_column_name": "OriginalPrePaymentDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DisplayPP",
+                    "source_column_name": "DisplayPP",
+                    "type": "bool",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblAdjustments",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblAdjustments",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblAdjustments",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblAdjustments"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

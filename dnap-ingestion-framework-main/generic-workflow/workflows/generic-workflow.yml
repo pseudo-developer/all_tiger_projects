@@ -1,0 +1,112 @@
+resources:
+  jobs:
+    pac_standard_workflow:
+      name: PAC Standard Workflow
+      email_notifications:
+        on_failure:
+          - ${var.support_email}
+        on_duration_warning_threshold_exceeded:
+          - ${var.support_email}
+        no_alert_for_skipped_runs: true
+      notification_settings:
+        no_alert_for_skipped_runs: true
+        no_alert_for_canceled_runs: true
+      health:
+        rules:
+          - metric: RUN_DURATION_SECONDS
+            op: GREATER_THAN
+            value: 14400
+      tasks:
+        - task_key: metadata_fetcher
+          notebook_task:
+            notebook_path: /Workspace/Repos/main-repos/dnap-ingestion-framework/src/metadata_fetcher
+            base_parameters:
+              configuration_path: "{{job.parameters.raw_config_file_path}}"
+            source: WORKSPACE
+          notification_settings:
+            no_alert_for_skipped_runs: true
+            no_alert_for_canceled_runs: true
+            alert_on_last_attempt: true
+        - task_key: iterate_raw_notebook
+          depends_on:
+            - task_key: metadata_fetcher
+          for_each_task:
+            inputs: "{{tasks.metadata_fetcher.values.table_config_file_path_list}}"
+            concurrency: 10
+            task:
+              task_key: raw_data_load
+              notebook_task:
+                notebook_path: /Workspace/Repos/main-repos/dnap-ingestion-framework/src/raw/ingest_notebook
+                base_parameters:
+                  config_file: "{{input}}"
+                  job_run_id: "{{job.run_id}}"
+                  task_run_id: "{{task.run_id}}"
+                source: WORKSPACE
+              existing_cluster_id: ${var.cluster_id}
+              #job_cluster_key: pac_standard_raw_data_load_cluster
+              health:
+                rules:
+                  - metric: RUN_DURATION_SECONDS
+                    op: GREATER_THAN
+                    value: 7200
+              email_notifications:
+                on_duration_warning_threshold_exceeded:
+                  - ${var.support_email}
+              notification_settings:
+                no_alert_for_skipped_runs: true
+                no_alert_for_canceled_runs: true
+        - task_key: is_bronze_enabled
+          depends_on:
+            - task_key: iterate_raw_notebook
+          condition_task:
+            op: EQUAL_TO
+            left: "{{job.parameters.is_bronze_enabled}}"
+            right: "true"
+        - task_key: bronze_dlt_trigger
+          depends_on:
+            - task_key: is_bronze_enabled
+              outcome: "true"
+          notebook_task:
+            notebook_path: /Workspace/Repos/main-repos/dnap-ingestion-framework/src/bronze/bronze_trigger
+            base_parameters:
+              bronze_config_path: "{{job.parameters.bronze_config_file_path}}"
+              bronze_dlt_notebook_path: /Workspace/Repos/main-repos/dnap-ingestion-framework/src/bronze/bronze_dlt
+            source: WORKSPACE
+      job_clusters:
+        - job_cluster_key: pac_standard_raw_data_load_cluster
+          new_cluster:
+            cluster_name: ""
+            spark_version: 16.2.x-scala2.12
+            azure_attributes:
+              first_on_demand: 1
+              availability: ON_DEMAND_AZURE
+              spot_bid_max_price: 100
+            node_type_id: Standard_E8ds_v4
+            driver_node_type_id: Standard_E16ds_v4
+            custom_tags:
+              team: ${var.team_tag}
+              app: ${var.app_tag}
+            enable_elastic_disk: true
+            policy_id: ${var.policy_id}
+            data_security_mode: SINGLE_USER
+            runtime_engine: PHOTON
+            autoscale:
+              min_workers: 2
+              max_workers: 8
+      queue:
+        enabled: true
+      parameters:
+        - name: raw_config_file_path
+          default: ""
+        - name: bronze_config_file_path
+          default: ""
+        - name: env
+          default: ${var.env}
+        - name: utils_path
+          default: ${var.utils_path}
+        - name: datasource_name
+          default: ""
+        - name: bronze_existing_pipeline
+          default: ""
+        - name: is_bronze_enabled
+          default: true

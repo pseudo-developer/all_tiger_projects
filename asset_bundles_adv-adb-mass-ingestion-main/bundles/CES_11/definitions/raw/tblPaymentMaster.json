@@ -1,0 +1,253 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblPaymentMaster",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "PaymentMasterID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PaymentNumber",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PaymentDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PaymentAmount",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "EmployeeNumber",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PaymentTypeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ReconDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ManualRecon",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PaymentLocationNumber",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ChargeDescription",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LocationID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsAutoReconPurchaseReturn",
+                    "data_type": "bool",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "PaymentMasterID"
+                ],
+                "watermark_column": "AddedDate",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblPaymentMaster_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "PaymentMasterID",
+                    "source_column_name": "PaymentMasterID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PaymentNumber",
+                    "source_column_name": "PaymentNumber",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PaymentDate",
+                    "source_column_name": "PaymentDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PaymentAmount",
+                    "source_column_name": "PaymentAmount",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "EmployeeNumber",
+                    "source_column_name": "EmployeeNumber",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PaymentTypeID",
+                    "source_column_name": "PaymentTypeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ReconDate",
+                    "source_column_name": "ReconDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedBy",
+                    "source_column_name": "AddedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedDate",
+                    "source_column_name": "AddedDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ManualRecon",
+                    "source_column_name": "ManualRecon",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PaymentLocationNumber",
+                    "source_column_name": "PaymentLocationNumber",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ChargeDescription",
+                    "source_column_name": "ChargeDescription",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LocationID",
+                    "source_column_name": "LocationID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsAutoReconPurchaseReturn",
+                    "source_column_name": "IsAutoReconPurchaseReturn",
+                    "type": "bool",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblPaymentMaster",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblPaymentMaster",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblPaymentMaster",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblPaymentMaster"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

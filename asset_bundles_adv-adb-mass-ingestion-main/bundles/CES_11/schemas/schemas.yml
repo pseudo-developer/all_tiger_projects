@@ -1,0 +1,10 @@
+resources:
+  schemas:
+    dbo_raw:
+      name: dbo_raw
+      catalog_name: ${var.catalog_name}
+      comment: This schema was created by the Mass Ingestion Databricks Asset Bundle (DAB)
+    dbo_bronze:
+      name: dbo_bronze
+      catalog_name: ${var.catalog_name}
+      comment: This schema was created by the Mass Ingestion Databricks Asset Bundle (DAB)

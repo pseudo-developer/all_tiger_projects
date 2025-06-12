@@ -1,0 +1,220 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "foreign_panama_boost_retaildb_stg",
+                    "schema_name": "public",
+                    "table_name": "availability_dailyavailabilityevent"
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "pgh_id",
+                    "data_type": "bigint",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pgh_created_at",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pgh_label",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "day",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "start_hour",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "start_minute",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "end_hour",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "end_minute",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pgh_context_id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pgh_obj_id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "week_id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "is_deleted",
+                    "data_type": "boolean",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "pgh_id"
+                ],
+                "watermark_column": "pgh_created_at",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "boost_retaildb_stg",
+                    "schema_name": "public_raw",
+                    "table_name": "availability_dailyavailabilityevent_cdc"
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "pgh_id",
+                    "source_column_name": "pgh_id",
+                    "type": "bigint",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pgh_created_at",
+                    "source_column_name": "pgh_created_at",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pgh_label",
+                    "source_column_name": "pgh_label",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "id",
+                    "source_column_name": "id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "day",
+                    "source_column_name": "day",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "start_hour",
+                    "source_column_name": "start_hour",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "start_minute",
+                    "source_column_name": "start_minute",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "end_hour",
+                    "source_column_name": "end_hour",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "end_minute",
+                    "source_column_name": "end_minute",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pgh_context_id",
+                    "source_column_name": "pgh_context_id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pgh_obj_id",
+                    "source_column_name": "pgh_obj_id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "week_id",
+                    "source_column_name": "week_id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "is_deleted",
+                    "source_column_name": "is_deleted",
+                    "type": "boolean",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": "boost_retaildb_stg.public_bronze.availability_dailyavailabilityevent"
+                }
+            },
+            "load_strategy": {
+                "mode": "cdc append",
+                "stage_enabled": true
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    }
+                }
+            }
+        }
+    }
+}

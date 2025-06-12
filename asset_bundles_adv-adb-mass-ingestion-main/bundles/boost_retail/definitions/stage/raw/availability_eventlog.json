@@ -1,0 +1,177 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "foreign_panama_boost_retaildb_stg",
+                    "schema_name": "public",
+                    "table_name": "availability_eventlog"
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "id",
+                    "data_type": "bigint",
+                    "nullable": true
+                },
+                {
+                    "column_name": "object_id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "operation",
+                    "data_type": "varchar(8)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "is_read",
+                    "data_type": "boolean",
+                    "nullable": true
+                },
+                {
+                    "column_name": "data",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "content_type_id",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "user_id",
+                    "data_type": "bigint",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "id"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "boost_retaildb_stg",
+                    "schema_name": "public_raw",
+                    "table_name": "availability_eventlog_cdc"
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "id",
+                    "source_column_name": "id",
+                    "type": "bigint",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "object_id",
+                    "source_column_name": "object_id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "operation",
+                    "source_column_name": "operation",
+                    "type": "varchar(8)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "is_read",
+                    "source_column_name": "is_read",
+                    "type": "boolean",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "data",
+                    "source_column_name": "data",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "created_at",
+                    "source_column_name": "created_at",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "updated_at",
+                    "source_column_name": "updated_at",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "content_type_id",
+                    "source_column_name": "content_type_id",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "user_id",
+                    "source_column_name": "user_id",
+                    "type": "bigint",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": "boost_retaildb_stg.public_bronze.availability_eventlog"
+                }
+            },
+            "load_strategy": {
+                "mode": "cdc append",
+                "stage_enabled": true
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

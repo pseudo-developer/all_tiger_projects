@@ -1,0 +1,16 @@
+resources:
+  pipelines:
+    example_pipeline:
+      name: DNAP - Ingestion Framework - Test Pipeline
+      libraries:
+        - notebook:
+            path: ${workspace.root_path}/files/src/bronze/bronze_dlt
+      target: ${resources.schemas.test-schema.name}
+      development: false
+      photon: true
+      channel: PREVIEW
+      catalog: ${var.catalog_name}
+      serverless: false
+      configuration:
+        pipeline.utils_path: ${var.utils_path}
+        pipeline.bronze_config_file_path: ${var.configuration_path}

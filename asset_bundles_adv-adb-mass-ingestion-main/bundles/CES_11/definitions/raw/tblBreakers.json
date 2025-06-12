@@ -1,0 +1,308 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblBreakers",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "BreakerID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "EmployeeInfoID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LocationsID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Hours",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Breaker",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PostedDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AbsenceReasonID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DateAdded",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "EmpTypeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "EventChargeTypeID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Rate",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsStandardRate",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "BilledHours",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsLead",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PayrollExportFileName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PostedBy",
+                    "data_type": "string",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "BreakerID"
+                ],
+                "watermark_column": "PostedDate",
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblBreakers_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "BreakerID",
+                    "source_column_name": "BreakerID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "EmployeeInfoID",
+                    "source_column_name": "EmployeeInfoID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LocationsID",
+                    "source_column_name": "LocationsID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoDate",
+                    "source_column_name": "DemoDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Hours",
+                    "source_column_name": "Hours",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Breaker",
+                    "source_column_name": "Breaker",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoID",
+                    "source_column_name": "DemoID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PostedDate",
+                    "source_column_name": "PostedDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AbsenceReasonID",
+                    "source_column_name": "AbsenceReasonID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedBy",
+                    "source_column_name": "AddedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DateAdded",
+                    "source_column_name": "DateAdded",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "EmpTypeID",
+                    "source_column_name": "EmpTypeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "EventChargeTypeID",
+                    "source_column_name": "EventChargeTypeID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Rate",
+                    "source_column_name": "Rate",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsStandardRate",
+                    "source_column_name": "IsStandardRate",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "BilledHours",
+                    "source_column_name": "BilledHours",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsLead",
+                    "source_column_name": "IsLead",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PayrollExportFileName",
+                    "source_column_name": "PayrollExportFileName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PostedBy",
+                    "source_column_name": "PostedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblBreakers",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblBreakers",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblBreakers",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblBreakers"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

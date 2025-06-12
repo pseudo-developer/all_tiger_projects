@@ -1,0 +1,499 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblCompanies_cdc",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "CompanyID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Name",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Abrev",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Monday",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Tuesday",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Wednesday",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Thursday",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Friday",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Saturday",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Sunday",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "WeekendMaxPercent",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Terms",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "BillingAddressID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PhysicalAddressID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "InvoiceEmailMessage",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DelinquentLetterAddressID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "InvoiceLogic",
+                    "data_type": "short",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DatabaseName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ReportUserName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ReportUserPassword",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SupportContactDisplayName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SupportContactEmailAddress",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "InvoiceFollowupContactID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "InvoiceTemplateFilename",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "InvoiceEmailSubject",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "URL",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "StoreName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DivisionName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CompanyLink",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "PrePayTerms",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CorporateTaxID",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_hash_key",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_hash_key_non_pk",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_operation",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_batch_id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_load_timestamp",
+                    "data_type": "timestamp",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "pac_hash_key"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [
+                    "pac_load_timestamp"
+                ],
+                "except_column_list": [
+                    "pac_operation"
+                ]
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_bronze",
+                    "table_name": "tblCompanies",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "CompanyID",
+                    "source_column_name": "CompanyID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Name",
+                    "source_column_name": "Name",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Abrev",
+                    "source_column_name": "Abrev",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Monday",
+                    "source_column_name": "Monday",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Tuesday",
+                    "source_column_name": "Tuesday",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Wednesday",
+                    "source_column_name": "Wednesday",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Thursday",
+                    "source_column_name": "Thursday",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Friday",
+                    "source_column_name": "Friday",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Saturday",
+                    "source_column_name": "Saturday",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Sunday",
+                    "source_column_name": "Sunday",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "WeekendMaxPercent",
+                    "source_column_name": "WeekendMaxPercent",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Terms",
+                    "source_column_name": "Terms",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "BillingAddressID",
+                    "source_column_name": "BillingAddressID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PhysicalAddressID",
+                    "source_column_name": "PhysicalAddressID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "InvoiceEmailMessage",
+                    "source_column_name": "InvoiceEmailMessage",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DelinquentLetterAddressID",
+                    "source_column_name": "DelinquentLetterAddressID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "InvoiceLogic",
+                    "source_column_name": "InvoiceLogic",
+                    "type": "short",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DatabaseName",
+                    "source_column_name": "DatabaseName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ReportUserName",
+                    "source_column_name": "ReportUserName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ReportUserPassword",
+                    "source_column_name": "ReportUserPassword",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SupportContactDisplayName",
+                    "source_column_name": "SupportContactDisplayName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SupportContactEmailAddress",
+                    "source_column_name": "SupportContactEmailAddress",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "InvoiceFollowupContactID",
+                    "source_column_name": "InvoiceFollowupContactID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "InvoiceTemplateFilename",
+                    "source_column_name": "InvoiceTemplateFilename",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "InvoiceEmailSubject",
+                    "source_column_name": "InvoiceEmailSubject",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "URL",
+                    "source_column_name": "URL",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "StoreName",
+                    "source_column_name": "StoreName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DivisionName",
+                    "source_column_name": "DivisionName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CompanyLink",
+                    "source_column_name": "CompanyLink",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "PrePayTerms",
+                    "source_column_name": "PrePayTerms",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CorporateTaxID",
+                    "source_column_name": "CorporateTaxID",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_hash_key",
+                    "source_column_name": "pac_hash_key",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_hash_key_non_pk",
+                    "source_column_name": "pac_hash_key_non_pk",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_operation",
+                    "source_column_name": "pac_operation",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_batch_id",
+                    "source_column_name": "pac_batch_id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_load_timestamp",
+                    "source_column_name": "pac_load_timestamp",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblCompanies_cdc",
+                        "qa": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblCompanies_cdc",
+                        "stg": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblCompanies_cdc",
+                        "prod": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblCompanies_cdc"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "SCD_2"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

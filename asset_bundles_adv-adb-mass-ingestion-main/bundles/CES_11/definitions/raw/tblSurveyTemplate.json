@@ -1,0 +1,154 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "qa": "foreign_panama_ces_agency_demodb_ems_int02b_qa",
+                        "stg": "foreign_panama_ces_agency_demodb_ems_stg01b_stg",
+                        "prod": "foreign_panama_ces_agency_demodb_ems_demo_prod"
+                    },
+                    "schema_name": "dbo",
+                    "table_name": "tblSurveyTemplate",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "SurveyTemplateID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SurveyName",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SurveyDomainID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsActive",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsDefaultTemplate",
+                    "data_type": "bool",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "SurveyTemplateID"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblSurveyTemplate_cdc",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "SurveyTemplateID",
+                    "source_column_name": "SurveyTemplateID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SurveyName",
+                    "source_column_name": "SurveyName",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SurveyDomainID",
+                    "source_column_name": "SurveyDomainID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsActive",
+                    "source_column_name": "IsActive",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsDefaultTemplate",
+                    "source_column_name": "IsDefaultTemplate",
+                    "type": "bool",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_bronze.tblSurveyTemplate",
+                        "qa": "ces_agency_demodb_ems_qa.dbo_bronze.tblSurveyTemplate",
+                        "stg": "ces_agency_demodb_ems_stg.dbo_bronze.tblSurveyTemplate",
+                        "prod": "ces_agency_demodb_ems_prod.dbo_bronze.tblSurveyTemplate"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "cdc append"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

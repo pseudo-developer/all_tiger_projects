@@ -1,0 +1,55 @@
+bundle:
+  name: dnap_test_ingestion_framework_bundle
+
+workspace:
+  root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}
+
+include:
+  - pipelines/*.yml
+  - schemas/*.yml
+  - workflows/*.yml
+
+sync:
+  paths:
+    - . #don't forget this, or all you'll get is ../src/
+    - ../src/
+    - ./definitions/
+    - ../utils/
+    - ../__init__.py
+
+variables:
+  cluster_id:
+    description: Cluster ID for Medium Shared Compute
+    lookup:
+      cluster: Medium Shared Compute Cluster
+  catalog_name:
+    description: Catalog name
+    default: dnap_dev
+  utils_path:
+    description: Path to the Ingestion Framework folder containing the utils module (configuration, helper, etc..)
+    default: ${workspace.root_path}/files
+  configuration_path:
+    description: Path to the table configuration JSON files
+    default: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/files/test/definitions/raw
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-4661267993302765.5.azuredatabricks.net
+    presets:
+      tags:
+        app: PACMAN
+        team: dnap
+    resources:
+      pipelines:
+        example_pipeline:
+          serverless: true
+          development: true
+      jobs:
+        test_ingestionframework_workflow_1:
+          parameters:
+          - name: schema_prefix
+            default: "dev_${workspace.current_user.short_name}_"
+

@@ -1,0 +1,104 @@
+bundle:
+  name: pac_generic_medium_workflow
+
+workspace:
+  root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}
+
+include:
+  - workflows/*.yml
+
+permissions:
+  - level: CAN_VIEW
+    group_name: ${var.users_group}
+  - level: CAN_MANAGE
+    service_principal_name: ${workspace.current_user.userName}
+    group_name: ${var.dev_group}
+
+variables:
+  users_group:
+    description: Environment specific name for the users group to add Can View permissions on the workflow
+    default: az-adv-dnap-eus2-adb-01-i1-dev-users
+  dev_group:
+    description: Environment specific name for the dev group to add Can Manage permissions on the workflow
+    default: az-adv-dnap-eus2-adb-01-i1-dev-developer
+  support_email:
+    description: Email address for support notifications like duration warnings & failures
+    default: bb373be0.advantageSolutionsnet.onmicrosoft.com@amer.teams.ms
+  policy_id:
+    description: Cluster Policy ID for the DNAP Medium job compute
+    lookup:
+      cluster_policy: 'DNAP PAC Standard Job Policy'
+  cluster_id:
+    description: remove when switching back to policy_id, used to point to the Shared Compute resources since Job Compute appears broken
+    lookup:
+      cluster: Medium Shared Compute Cluster
+  utils_path:
+    description: Path to the Ingestion Framework folder containing the utils module (configuration, helper, etc..)
+    default: /Workspace/Repos/main-repos/dnap-ingestion-framework
+  files_path:
+    description: Path to the files
+    default: ${workspace.root_path}/files
+  app_tag:
+    description: Value to be used for the "app" tag
+    default: PAC
+  team_tag: 
+    description: Value to be used for the "team" tag
+    default: dnap
+  env:
+    description: 'Environment literal like dev, qa, stage, prod'
+    default: dev
+
+targets:
+  dev:
+    mode: production
+    default: true
+    workspace:
+      host: https://adb-4661267993302765.5.azuredatabricks.net
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    presets:
+      tags:
+        app: ${var.app_tag}
+        team: ${var.team_tag}
+    variables:
+      users_group: az-adv-dnap-eus2-adb-01-i1-dev-users
+      dev_group: az-adv-dnap-eus2-adb-01-i1-dev-developer
+      env: dev
+
+  qa:
+    mode: production
+    workspace:
+      host: https://adb-7069523072644634.14.azuredatabricks.net
+    presets:
+      tags:
+        app: ${var.app_tag}
+        team: ${var.team_tag}
+    variables:
+      users_group: az-adv-dnap-eus2-adb-01-i1-qa-users
+      dev_group: az-adv-dnap-eus2-adb-01-i1-qa-developer
+      env: qa
+
+  stage:
+    mode: production
+    workspace:
+      host: https://adb-8306180947252240.0.azuredatabricks.net
+    presets:
+      tags:
+        app: ${var.app_tag}
+        team: ${var.team_tag}
+    variables:
+      users_group: az-adv-dnap-eus2-adb-01-i1-stage-users
+      dev_group: az-adv-dnap-eus2-adb-01-i1-stage-developer
+      env: stage
+
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-7622183527867515.15.azuredatabricks.net
+    presets:
+      tags:
+        app: ${var.app_tag}
+        team: ${var.team_tag}
+    variables:
+      users_group: az-adv-dnap-eus2-adb-01-i1-prod-users
+      dev_group: az-adv-dnap-eus2-adb-01-i1-prod-developer
+      env: prod

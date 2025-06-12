@@ -1,0 +1,41 @@
+resources:
+  jobs:
+    test_ingestionframework_workflow_1:
+      name: DNAP - Ingestion Framework Test 1
+      max_concurrent_runs: 1
+      tasks:
+        - task_key: metadata_fetcher
+          notebook_task:
+            notebook_path: ${workspace.root_path}/files/src/metadata_fetcher
+            source: WORKSPACE # in production, this should be GIT & exist in the main branch of the repo
+        - task_key: iterate_bronze_notebook
+          depends_on:
+            - task_key: metadata_fetcher
+          for_each_task:
+            inputs: "{{tasks.metadata_fetcher.values.table_config_file_path_list}}"
+            concurrency: 10
+            task:
+              task_key: raw_data_load
+              notebook_task:
+                notebook_path: ${workspace.root_path}/files/src/raw/ingest-notebook
+                base_parameters:
+                  config_file: "{{input}}"
+                  job_run_id: "{{job.run_id}}"
+                  task_run_id: "{{task.run_id}}"
+                source: WORKSPACE
+        - task_key: bronze_dlt
+          depends_on:
+            - task_key: iterate_bronze_notebook
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.example_pipeline.id}
+      queue:
+        enabled: true
+      parameters:
+      - name: workflow_job_run_id
+        default: "{{job.run_id}}"
+      - name: configuration_path
+        default: ${var.configuration_path}
+      - name: utils_path
+        default: ${var.utils_path}
+      - name: schema_prefix
+        default: ""

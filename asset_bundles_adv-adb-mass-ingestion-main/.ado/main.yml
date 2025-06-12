@@ -1,0 +1,62 @@
+trigger:
+  tags:
+    include:
+      - v*.*.*
+
+pr: none
+
+stages:
+
+# DEV 
+- stage: DEV
+  displayName: 'Deploy to DEV'
+  variables:
+    - group: ADV-ADB-MI-DEPLOY-DEV
+  jobs:
+    - job: Deploy_DEV
+      displayName: 'Deploy Databricks Assets to DEV'
+      pool: $(poolName)
+      steps:
+      - template: /.ado/deploy-template.yml
+        parameters:
+          env: dev
+
+#STAGE
+- stage: STAGE
+  displayName: 'Deploy to STAGE'
+  dependsOn: DEV
+  condition: succeeded()
+  variables:
+    - group: ADV-ADB-MI-DEPLOY-STAGE
+  jobs:
+    - deployment: Deploy_STAGE
+      displayName: 'Deploy Databricks Assets to STAGE'
+      environment: ADV-ADB-STAGE
+      pool: ADV-TF-STAGE-EASTUS2-Data and Analytics Portfolio
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: /.ado/deploy-template.yml
+              parameters:
+                env: stage
+
+#PRODUCTION
+- stage: PRODUCTION
+  displayName: 'Deploy to PROD'
+  dependsOn: STAGE
+  condition: succeeded()
+  variables:
+    - group: ADV-ADB-MI-DEPLOY-PROD
+  jobs:
+    - deployment: Deploy_PROD
+      displayName: 'Deploy Databricks Assets to PRODUCTION'
+      environment: ADV-ADB-PROD
+      pool: ADV-TF-PROD-EASTUS2-Data and Analytics Portfolio
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: /.ado/deploy-template.yml
+              parameters:
+                env: prod

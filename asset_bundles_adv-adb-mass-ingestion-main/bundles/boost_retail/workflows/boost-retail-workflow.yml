@@ -1,0 +1,47 @@
+resources:
+  jobs:
+    boost_retail_workflow:
+      name: Boost Retail - Mass Ingestion
+      schedule:
+        quartz_cron_expression: 42 30 3 * * ?
+        timezone_id: UTC
+        pause_status: UNPAUSED
+      tasks:
+        - task_key: raw_metadata_fetcher
+          notebook_task:
+            notebook_path: ${var.pacman_location}/src/metadata_fetcher
+            base_parameters:
+              configuration_path: ${var.raw_configuration_path}
+              utils_path: ${var.pacman_location}
+            source: WORKSPACE
+          existing_cluster_id: ${var.cluster_id}
+        - task_key: iterate_raw_ingestion_notebook
+          depends_on:
+            - task_key: raw_metadata_fetcher
+          for_each_task:
+            inputs: "{{tasks.raw_metadata_fetcher.values.table_config_file_path_list}}"
+            concurrency: 10
+            task:
+              task_key: raw_ingestion_notebook
+              notebook_task:
+                notebook_path: ${var.pacman_location}/src/raw/ingest_notebook
+                base_parameters:
+                  job_run_id: "{{job.run_id}}"
+                  config_file: "{{input}}"
+                  task_run_id: "{{task.run_id}}"
+                  utils_path: ${var.pacman_location}
+                  schema_prefix: ""
+                  env: ${var.env}
+                source: WORKSPACE
+              existing_cluster_id: ${var.cluster_id}
+        - task_key: run_bronze_dlt
+          depends_on:
+            - task_key: iterate_raw_ingestion_notebook
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.boost_retail_dlt_pipeline.id}
+            full_refresh: false
+      permissions:
+        - level: CAN_MANAGE
+          group_name: ${var.dev_group}
+      queue:
+        enabled: true

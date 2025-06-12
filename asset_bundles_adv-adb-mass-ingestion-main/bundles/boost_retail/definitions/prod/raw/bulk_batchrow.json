@@ -1,0 +1,198 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "foreign_panama_boost_retaildb_prod",
+                    "schema_name": "public",
+                    "table_name": "bulk_batchrow"
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "action",
+                    "data_type": "varchar(2147483647)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "result_status",
+                    "data_type": "varchar(2147483647)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "error_message",
+                    "data_type": "varchar(2147483647)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "external_last_modified",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "processed_date",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "batch_id",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "job_id",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "solver_run_id",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "source_system_processed_date",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "source_system",
+                    "data_type": "varchar(16)",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "id"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [],
+                "except_column_list": []
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": "boost_retaildb_prod",
+                    "schema_name": "public_raw",
+                    "table_name": "bulk_batchrow_cdc"
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "id",
+                    "source_column_name": "id",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "action",
+                    "source_column_name": "action",
+                    "type": "varchar(2147483647)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "result_status",
+                    "source_column_name": "result_status",
+                    "type": "varchar(2147483647)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "error_message",
+                    "source_column_name": "error_message",
+                    "type": "varchar(2147483647)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "external_last_modified",
+                    "source_column_name": "external_last_modified",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "processed_date",
+                    "source_column_name": "processed_date",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "batch_id",
+                    "source_column_name": "batch_id",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "job_id",
+                    "source_column_name": "job_id",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "solver_run_id",
+                    "source_column_name": "solver_run_id",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "source_system_processed_date",
+                    "source_column_name": "source_system_processed_date",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "source_system",
+                    "source_column_name": "source_system",
+                    "type": "varchar(16)",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": "boost_retaildb_prod.public_bronze.bulk_batchrow"
+                }
+            },
+            "load_strategy": {
+                "mode": "cdc append",
+                "stage_enabled": true
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    }
+                }
+            }
+        }
+    }
+}

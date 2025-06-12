@@ -1,0 +1,60 @@
+{
+    "tables": {
+        "hierarchy_division": {
+            "source_entity": {
+                "data_store": {
+                    "type": "catalog",
+                    "properties": {
+                       "catalog_name": "foreign_boostretail_dev",
+                       "schema_name": "public",
+                       "table_name": "hierarchy_division" 
+                    }
+                }
+            },
+            "target_definition": {
+                "data_store": {
+                    "type": "catalog",
+                    "properties": {
+                        "catalog_name": "TEST",
+                        "schema_name": "TEST",
+                        "table_name":"hierarchy_division"
+                    }
+                }
+            },
+            "transformation": {
+                "dedup": {
+                    "enabled": false,
+                    "keys": [
+                        "id"
+                    ]
+                }
+            },
+            "primary_keys": [
+                "id"
+            ]
+        },
+        "hierarchy_divisioncategory": {
+            "source_entity": {
+                "data_store": {
+                    "type": "catalog",
+                    "properties": {
+                        "catalog_name": "foreign_boostretail_dev",
+                        "schema_name": "public",
+                        "table_name": "hierarchy_divisioncategory"
+                    }
+                }
+            },
+            "target_definition": {
+                "data_store": {
+                    "type": "catalog",
+                    "properties": {
+                        "catalog_name": "foreign_boostretail_dev",
+                        "schema_name": "TEST",
+                        "table_name": "hierarchy_divisioncategory"
+                    }
+                }
+            },
+            "table_transform": null
+        }
+    }
+}

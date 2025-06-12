@@ -1,0 +1,653 @@
+{
+    "source_to_target_definition": {
+        "source_entity": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_raw",
+                    "table_name": "tblBillingDetail_cdc",
+                    "file_location": null,
+                    "spark_options": {}
+                }
+            },
+            "schema": [
+                {
+                    "column_name": "BillingDetailID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "BillingHeaderID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ItemsID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "InvoiceID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Enhancement",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "EnhancementDesc",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UnitsUsed",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UnitsSold",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UnitCost",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UnitTax",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "MembersSampled",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CustomerCharge",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "CustomerChargeTax",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LaborTax",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LaborCharge",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SupplyCharge",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "TaxPaid",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "DemoCount",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AddedDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdatedBy",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UpdatedDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "TaxPaidDate",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SupplyTax",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ChargeType",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "IsDetail",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "BaseUnit",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "BaseDollar",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "SalesDollar",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "FlatLaborRate",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "HourlyLaborRate",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Hours",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LaborFactura",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductFactura",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UnitsPurchase",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UnitsReturn",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ItemBillingDetailID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AllSamplesUsed",
+                    "data_type": "bool",
+                    "nullable": true
+                },
+                {
+                    "column_name": "AllSamplesUsedTime",
+                    "data_type": "timestamp",
+                    "nullable": true
+                },
+                {
+                    "column_name": "ProductsPurchasedDesc",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "BillingVendorID",
+                    "data_type": "int",
+                    "nullable": true
+                },
+                {
+                    "column_name": "Supply_Surcharge",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "LaborTax2",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "UnitTax2",
+                    "data_type": "decimal(19,4)",
+                    "nullable": true
+                },
+                {
+                    "column_name": "TaxPercentage",
+                    "data_type": "double",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_hash_key",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_hash_key_non_pk",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_operation",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_batch_id",
+                    "data_type": "string",
+                    "nullable": true
+                },
+                {
+                    "column_name": "pac_load_timestamp",
+                    "data_type": "timestamp",
+                    "nullable": true
+                }
+            ],
+            "property": {
+                "primary_keys": [
+                    "pac_hash_key"
+                ],
+                "watermark_column": null,
+                "initial_watermark_value": null,
+                "seq_col": [
+                    "pac_load_timestamp"
+                ],
+                "except_column_list": [
+                    "pac_operation"
+                ]
+            }
+        },
+        "target_definition": {
+            "data_store": {
+                "type": "catalog",
+                "properties": {
+                    "catalog_name": {
+                        "dev": "ces_agency_demodb_ems_dev",
+                        "qa": "ces_agency_demodb_ems_qa",
+                        "stg": "ces_agency_demodb_ems_stg",
+                        "prod": "ces_agency_demodb_ems_prod"
+                    },
+                    "schema_name": "dbo_bronze",
+                    "table_name": "tblBillingDetail",
+                    "trigger_type": null,
+                    "trigger_interval": null,
+                    "spark_options": {}
+                }
+            },
+            "schema_transform_map": [
+                {
+                    "column_name": "BillingDetailID",
+                    "source_column_name": "BillingDetailID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "BillingHeaderID",
+                    "source_column_name": "BillingHeaderID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ItemsID",
+                    "source_column_name": "ItemsID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "InvoiceID",
+                    "source_column_name": "InvoiceID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Enhancement",
+                    "source_column_name": "Enhancement",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "EnhancementDesc",
+                    "source_column_name": "EnhancementDesc",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UnitsUsed",
+                    "source_column_name": "UnitsUsed",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UnitsSold",
+                    "source_column_name": "UnitsSold",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UnitCost",
+                    "source_column_name": "UnitCost",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UnitTax",
+                    "source_column_name": "UnitTax",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "MembersSampled",
+                    "source_column_name": "MembersSampled",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CustomerCharge",
+                    "source_column_name": "CustomerCharge",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "CustomerChargeTax",
+                    "source_column_name": "CustomerChargeTax",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LaborTax",
+                    "source_column_name": "LaborTax",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LaborCharge",
+                    "source_column_name": "LaborCharge",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SupplyCharge",
+                    "source_column_name": "SupplyCharge",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "TaxPaid",
+                    "source_column_name": "TaxPaid",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "DemoCount",
+                    "source_column_name": "DemoCount",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedBy",
+                    "source_column_name": "AddedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AddedDate",
+                    "source_column_name": "AddedDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdatedBy",
+                    "source_column_name": "UpdatedBy",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UpdatedDate",
+                    "source_column_name": "UpdatedDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "TaxPaidDate",
+                    "source_column_name": "TaxPaidDate",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SupplyTax",
+                    "source_column_name": "SupplyTax",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ChargeType",
+                    "source_column_name": "ChargeType",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "IsDetail",
+                    "source_column_name": "IsDetail",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "BaseUnit",
+                    "source_column_name": "BaseUnit",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "BaseDollar",
+                    "source_column_name": "BaseDollar",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "SalesDollar",
+                    "source_column_name": "SalesDollar",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "FlatLaborRate",
+                    "source_column_name": "FlatLaborRate",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "HourlyLaborRate",
+                    "source_column_name": "HourlyLaborRate",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Hours",
+                    "source_column_name": "Hours",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LaborFactura",
+                    "source_column_name": "LaborFactura",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductFactura",
+                    "source_column_name": "ProductFactura",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UnitsPurchase",
+                    "source_column_name": "UnitsPurchase",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UnitsReturn",
+                    "source_column_name": "UnitsReturn",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ItemBillingDetailID",
+                    "source_column_name": "ItemBillingDetailID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AllSamplesUsed",
+                    "source_column_name": "AllSamplesUsed",
+                    "type": "bool",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "AllSamplesUsedTime",
+                    "source_column_name": "AllSamplesUsedTime",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "ProductsPurchasedDesc",
+                    "source_column_name": "ProductsPurchasedDesc",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "BillingVendorID",
+                    "source_column_name": "BillingVendorID",
+                    "type": "int",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "Supply_Surcharge",
+                    "source_column_name": "Supply_Surcharge",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "LaborTax2",
+                    "source_column_name": "LaborTax2",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "UnitTax2",
+                    "source_column_name": "UnitTax2",
+                    "type": "decimal(19,4)",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "TaxPercentage",
+                    "source_column_name": "TaxPercentage",
+                    "type": "double",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_hash_key",
+                    "source_column_name": "pac_hash_key",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_hash_key_non_pk",
+                    "source_column_name": "pac_hash_key_non_pk",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_operation",
+                    "source_column_name": "pac_operation",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_batch_id",
+                    "source_column_name": "pac_batch_id",
+                    "type": "string",
+                    "derived_expression": ""
+                },
+                {
+                    "column_name": "pac_load_timestamp",
+                    "source_column_name": "pac_load_timestamp",
+                    "type": "timestamp",
+                    "derived_expression": ""
+                }
+            ],
+            "property": {
+                "primary_keys": [],
+                "seq_col": [],
+                "partition_cluster_flag": "",
+                "partition_col": []
+            }
+        },
+        "table_transform": {
+            "dedup": {
+                "enabled": true,
+                "properties": {
+                    "keys_override": []
+                }
+            },
+            "cdc": {
+                "enabled": true,
+                "properties": {
+                    "table_name_for_comparison": {
+                        "dev": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblBillingDetail_cdc",
+                        "qa": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblBillingDetail_cdc",
+                        "stg": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblBillingDetail_cdc",
+                        "prod": "ces_agency_demodb_ems_dev.dbo_raw.bronze_tblBillingDetail_cdc"
+                    }
+                }
+            },
+            "load_strategy": {
+                "stage_enabled": true,
+                "mode": "SCD_2"
+            }
+        },
+        "rules": {
+            "bronze": {
+                "Error": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": {
+                        "rule": ""
+                    }
+                },
+                "Warn": {
+                    "literal": {
+                        "rule": ""
+                    },
+                    "derived": null
+                }
+            }
+        }
+    }
+}

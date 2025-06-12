@@ -1,0 +1,10 @@
+resources:
+  schemas:
+    public_bronze:
+      name: public_bronze
+      catalog_name: ${var.catalog_name}
+      comment: This schema was created by the Mass Ingestion Databricks Asset Bundle (DAB)
+    public_raw:
+      name: public_raw
+      catalog_name: ${var.catalog_name}
+      comment: This schema was created by the Mass Ingestion Databricks Asset Bundle (DAB)

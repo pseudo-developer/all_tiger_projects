@@ -1,0 +1,68 @@
+{
+  "source_entity": {
+    "entity_name": "sourcetransactionentity",
+    "data_store": {
+      "data_store_type": "delta lake table",
+      "data_store_property": {
+        "catalog_name": "shared_circana_snowflake_future_v2",
+        "schema_name": "bronze_circana_snowflake_store_data"
+      }
+    },
+    "schema_details": {
+      "structure": [
+        { "column_name": "id", "data_type": "integer", "nullable": false },
+        { "column_name": "name", "data_type": "string", "nullable": true },
+        { "column_name": "age", "data_type": "integer", "nullable": true },
+        { "column_name": "created_at", "data_type": "string", "nullable": true },
+        { "column_name": "updated_at", "data_type": "string", "nullable": true },
+        { "column_name": "sequence_num", "data_type": "integer", "nullable": false }
+      ],
+      "primary_keys": ["id", "sequence_num"],
+      "watermarks": "created_at",
+      "seq_col": ["created_at", "updated_at"]
+    }
+  },
+  "target_entity": {
+    "entity_name": "processedtransactionentity",
+    "data_store": {
+      "data_store_type": "delta lake table",
+      "data_store_property": {
+        "catalog_name": "shared_circana_snowflake_future_v2",
+        "schema_name": "silver_circana_snowflake_store_data"
+      }
+    },
+    "schema_details": {
+      "structure": [
+        { "column_name": "id", "data_type": "integer", "nullable": false },
+        { "column_name": "full_name", "data_type": "string", "nullable": true },
+        { "column_name": "age", "data_type": "integer", "nullable": true },
+        { "column_name": "registration_date", "data_type": "string", "nullable": true },
+        { "column_name": "sequence_num", "data_type": "integer", "nullable": false }
+      ],
+      "primary_keys": ["id", "sequence_num"],
+      "watermarks": "created_at",
+      "seq_col": ["created_at", "updated_at"]
+    }
+  },
+  "transformation": {
+    "column_remapping": {
+      "enabled": false,
+      "mapping": {
+        "created_date": "source_created_date"
+    }
+  },
+    "derived_column_selections": {
+      "enabled": false,
+      "derived": {
+        "product_code": "f.lpad('upc_13_digit', 13, '0')",
+        "upc_13_digit":"f.lpad('upc_13_digit', 13, '0')",
+        "upc_12_digit": "f.lpad('upc_12_digit', 12, '0')"
+      }
+    },
+    "dedup": {
+      "enabled": true,
+      "keys": ["id"]
+    }
+  },
+  "common_properties": {"load_strategy":"cdc append","source_extraction":"full"}
+}
